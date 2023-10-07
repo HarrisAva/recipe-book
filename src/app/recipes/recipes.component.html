@@ -1,18 +1,26 @@
-<!-- 
-    Recipe project idea: 
-    - Recipes by categories: soup, salad, pasta, curry,
-    noodle, dessert, appeitizer, drink - Recipes by ingredients: chicken, pork,
-    beef, fish, seafood, vegetable - Recipe model includes title, picture,
-    ingredients, preparation, prep time - Option to search by keyword and filter
-    by category and ingredient - User login/sign up for options to save and
-    print - Admin option to add/delete recipe
-  -->
-
 <div class="row">
   <div class="col-md-5">
-    <app-recipe-list></app-recipe-list>
+    <app-recipe-list
+      (recipeWasSelected)="selectedRecipe = $event"
+    ></app-recipe-list>
   </div>
   <div class="col-md-7">
-    <app-recipe-detail></app-recipe-detail>
+    <app-recipe-detail
+      *ngIf="selectedRecipe; else infoText"
+      [recipe]="selectedRecipe"
+    ></app-recipe-detail>
+    <ng-template #infoText>
+      <p>Plese select a Recipe</p>
+    </ng-template>
   </div>
 </div>
+
+<!-- ***
+  1- recipeWasSelected is from RecipeList on the event of clicking onSelectRecipe function. The function returns recipeSelected property that refer to the data we passed with an event.
+
+  2- pass the information from 1 to the RecipeDetail component to display the detail
+    - check if recipeSelected is defined (#ngIf="recipeSelected" is true), if not use ng-template to display some texts
+
+
+
+-- -->

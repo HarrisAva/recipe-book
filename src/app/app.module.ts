@@ -9,8 +9,10 @@ import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.com
 import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-item.component';
 import { Ingredient } from './shared/ingredient.model';
 import { Recipe } from './recipes/recipe.model';
-import { MyrecipeListComponent } from './myrecipe-list/myrecipe-list.component';
-import { MyrecipeEditComponent } from './myrecipe-list/myrecipe-edit/myrecipe-edit.component'
+import { ShoppingListComponent } from './shopping-list/shopping-list.component';
+import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component'
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -20,13 +22,15 @@ import { MyrecipeEditComponent } from './myrecipe-list/myrecipe-edit/myrecipe-ed
     RecipeListComponent,
     RecipeDetailComponent,
     RecipeItemComponent,
-    MyrecipeListComponent,
-    MyrecipeEditComponent,
+    ShoppingListComponent,
+    ShoppingEditComponent,
 
 
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+  
 
   ],
   providers: [],

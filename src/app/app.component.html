@@ -1,11 +1,9 @@
-<app-header (currentPage)="onNavigatePage($event)"></app-header>
+<app-header (currentPage)="onNavigate($event)"></app-header>
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <app-recipes *ngIf="pageDisplayed === 'recipe'"></app-recipes>
-      <app-myrecipe-list
-        *ngIf="pageDisplayed === 'myrecipe'"
-      ></app-myrecipe-list>
+      <app-recipes *ngIf="loadedPage === 'recipe'"></app-recipes>
+      <app-shopping-list *ngIf="loadedPage !== 'recipe'"></app-shopping-list>
     </div>
   </div>
 </div>
