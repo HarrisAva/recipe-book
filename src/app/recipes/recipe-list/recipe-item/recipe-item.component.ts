@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Recipe } from '../../recipe.model';
+import { RecipeService } from '../../recipe.service';
 
 @Component({
   selector: 'app-recipe-item',
@@ -8,35 +9,18 @@ import { Recipe } from '../../recipe.model';
 })
 export class RecipeItemComponent implements OnInit {
 
-  // get a recipe from outside component using Input (from Recipe class in recipe.model.ts) 
-  // then binding (sending) it to RecipeList component
   @Input() recipe: Recipe; 
 
-  // binding click event of onSelectRecipe to display its detail
-  // sending variable 'recipeSelected' to parent component
-  @Output() recipeSelected = new EventEmitter<void>();
-
-
-  constructor() { }
+  // inject RecipeService
+  constructor( private recipeService: RecipeService) { }
 
   ngOnInit() {
     
   }
-// function to emit clicking of onSelectRecipe, then output recipeSelected variable
+// emit recipe that is selected in the service
   onSelected (recipe: string) {
-    this.recipeSelected.emit(); 
-    // emit recipe that is selected under recipe-list (see recipe-list html)
+     this.recipeService.recipeSelected.emit(this.recipe); 
+    
   }
 
 }
-
-
-// recipe item flows:
-
-// 1- recipe item get a recipe from the Recipe class in recipe model (recipe.model.ts)
-//     @Input() recipe: Recipe; 
-
-// 2. binding (sending) each recipe to RecipeList component
-//     (in recipe-list.component.ts:)
-//     *ngFor="let recipeElement of recipes">
-//     [recipe] = 'recipeElement' 
