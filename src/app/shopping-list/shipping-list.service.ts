@@ -20,5 +20,16 @@ export class ShoppingListService {
 
     }
 
+    addIngredients(ingredients:Ingredient[]) {
+        // for (let ingredient of ingredients) {
+        //     this.addIngredient(ingredient);
+        // }
 
+        // add all ingredients in one go then emit the event 
+        // use spread operator to turn an array of elments into a list of elements
+        this.ingredients.push(...ingredients);
+        
+        // to emit ingredients changed, pass a copy of it
+        this.ingredientsChanged.emit(this.ingredients.slice());
+    }
 }
