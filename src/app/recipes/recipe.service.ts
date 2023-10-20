@@ -1,4 +1,4 @@
-import { EventEmitter, Injectable } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { Recipe } from "./recipe.model";
 import { Ingredient } from "../shared/ingredient.model";
 import { ShoppingListService } from "../shopping-list/shipping-list.service";
@@ -7,8 +7,8 @@ import { ShoppingListService } from "../shopping-list/shipping-list.service";
 @Injectable() 
 export class RecipeService {
 
+
     // listening to selectedRecipe event from recipe component selection
-    recipeSelected = new EventEmitter<Recipe>();
 
     recipes: Recipe[] = [
         new Recipe('Pizza',
@@ -38,9 +38,7 @@ export class RecipeService {
       // to get a single recipe to display its Detail
       getRecipe(index: number) {
         return this.recipes[index];
-
       }
-
       addIngredientsToSL(ingredients: Ingredient[]) {
         this.slService.addIngredients(ingredients);
 
