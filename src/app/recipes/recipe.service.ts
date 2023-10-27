@@ -2,28 +2,31 @@ import { Injectable } from "@angular/core";
 import { Recipe } from "./recipe.model";
 import { Ingredient } from "../shared/ingredient.model";
 import { ShoppingListService } from "../shopping-list/shipping-list.service";
+import { Subject } from "rxjs";
 
 // use @Injectable to access shopping list service (inject service to service)
 @Injectable() 
 export class RecipeService {
 
+  // when editing or adding a new recipe:
+  recipesChanged = new Subject<Recipe[]>();
 
-    // listening to selectedRecipe event from recipe component selection
-
-    recipes: Recipe[] = [
+    private recipes: Recipe[] = [
         new Recipe('Pizza',
-         'This is simpy a test description-1',
-          'https://sallysbakingaddiction.com/wp-content/uploads/2014/05/sugar-cookie-fruit-pizza.jpg',
+         'Pepperoni pizza',
+          'https://image.shutterstock.com/image-photo/supreme-pizza-lifted-slice-1-260nw-84904912.jpg',
           [
-            new Ingredient ('Meat', 1),
-            new Ingredient ('French Fries', 20)
+            new Ingredient ('Cheese', 1),
+            new Ingredient ('Pepperoni', 1),
+            new Ingredient ('Tomato', 20)
           ] ),
         new Recipe('Burger', 
-        'This is simpy a test description-2', 
-        'https://sallysbakingaddiction.com/wp-content/uploads/2014/05/sugar-cookie-fruit-pizza.jpg',
+        'Beef burger', 
+        'https://cdn.pixabay.com/photo/2016/03/05/19/02/hamburger-1238246_1280.jpg',
         [
           new Ingredient ('Buns', 2),
-          new Ingredient ('Meat', 1)
+          new Ingredient ('Beef', 1),
+          new Ingredient ('Onion', 1)
         ] )
       ]; 
 
@@ -39,6 +42,22 @@ export class RecipeService {
       getRecipe(index: number) {
         return this.recipes[index];
       }
+
+      addRecipe(recipe: Recipe) {
+        this.recipes.push(recipe) // push a new recipe to recipes array
+        this.recipesChanged.next(this.recipes.slice()); // get updated recipes
+      }
+
+      updateRecipe(index: number, newRecipe: Recipe) {
+        this.recipes[index] = newRecipe; // take array of recipe to newRecipe
+        this.recipesChanged.next(this.recipes.slice());
+      }
+
+      deleteRecipe(index: number) {
+        this.recipes.splice(index, 1);
+        this.recipesChanged.next(this.recipes.slice());
+      }
+
       addIngredientsToSL(ingredients: Ingredient[]) {
         this.slService.addIngredients(ingredients);
 
