@@ -20,10 +20,13 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li style="cursor: pointer">
+        <li style="cursor: pointer" *ngIf="!isAuthenticated">
           <a routerLink="/auth">Sign Up/Log In</a>
         </li>
-        <li class="dropdown" appDropdown>
+        <li style="cursor: pointer" *ngIf="isAuthenticated">
+          <a>Log Out</a>
+        </li>
+        <li class="dropdown" *ngIf="isAuthenticated" appDropdown>
           <a class="dropdown-toggle" role="button"
             >Manage<span class="caret"></span
           ></a>

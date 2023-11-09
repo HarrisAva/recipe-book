@@ -24,6 +24,8 @@ import { RecipeService } from './recipes/recipe.service';
 import { AuthComponent } from './auth/auth.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { AuthService } from './auth/auth.service';
+import { DataStorageService } from './shared/data-storage.service';
+import { RecipesResolverService } from './recipes/recipes-resolver.service';
 
 
 
@@ -56,7 +58,7 @@ import { AuthService } from './auth/auth.service';
 
 
   ],
-  providers: [ShoppingListService, RecipeService, AuthService],
+  providers: [ShoppingListService, RecipeService, AuthService, DataStorageService, RecipesResolverService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
