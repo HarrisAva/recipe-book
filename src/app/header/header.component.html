@@ -23,8 +23,8 @@
         <li style="cursor: pointer" *ngIf="!isAuthenticated">
           <a routerLink="/auth">Sign Up/Log In</a>
         </li>
-        <li style="cursor: pointer" *ngIf="isAuthenticated">
-          <a>Log Out</a>
+        <li *ngIf="isAuthenticated">
+          <a style="cursor: pointer" (click)="onLogout()">Log Out</a>
         </li>
         <li class="dropdown" *ngIf="isAuthenticated" appDropdown>
           <a class="dropdown-toggle" role="button"
